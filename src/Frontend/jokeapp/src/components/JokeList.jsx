@@ -24,6 +24,7 @@ const JokeList = () => {
                 setJokes(responseData.data);
                 setShowButtons(true);
             }  else{
+                setJokes(null);
                 alert(responseData.message);
             }
         } catch (error) {
