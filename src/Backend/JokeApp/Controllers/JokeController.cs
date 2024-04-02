@@ -20,12 +20,11 @@ namespace JokeApp.Controllers
         }
         [HttpGet]
         [Route(WebApiEndpoint.JokeEndpoint.GetJokeVote)]
-        public IActionResult GetRandomJoke(string id)
+        public IActionResult GetRandomJoke()
         {
-            //var readJokes = Request.Cookies[JokesCookie.JokesCookieName]?.Split(',').ToList() ?? new List<string>();
-            var listid = id?.Split(',').ToList() ?? new List<string>();
+            var readJokes = Request.Cookies[JokesCookie.JokesCookieName]?.Split(',').ToList() ?? new List<string>();
 
-            var unreadJokes = _context.Joke.Where(j => !listid.Contains(j.Id));
+            var unreadJokes = _context.Joke.Where(j => !readJokes.Contains(j.Id));
 
             var randomJoke = unreadJokes.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
 

@@ -1,24 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-import Cookies from 'js-cookie';
 
 const BASE_URL = 'https://apijokeapp.azurewebsites.net/api/';
-// const BASE_URL = 'https://localhost:7252/api/';
+//const BASE_URL = 'https://localhost:7252/api/';
 const JokeList = () => {
     const [jokes, setJokes] = useState(null); 
     const [showButtons, setShowButtons] = useState(false); 
     axios.defaults.withCredentials = true;
     const fetchData = async () => {
         try {
-            const cookieValue = Cookies.get('voted_jokes');
-            // axios.interceptors.request.use(function (config) {
-            //     config.withCredentials = true;
-            //     config.headers['Cookie'] = `voted_jokes=${cookieValue}`;
-            //     return config;
-            // });
-            
-            const response = await axios.get(`${BASE_URL}joke/get-joke?id=${cookieValue}`);
+            const response = await axios.get(`${BASE_URL}joke/get-joke`,
+            {
+                withCredentials: true,
+            });
             const responseData = response.data;
             if (responseData.data !== null) {
                 setJokes(responseData.data);
@@ -40,16 +35,12 @@ const JokeList = () => {
 
     const handleButtonClick = async (jokeId, vote) => {
         try {
-            let votedJokes = Cookies.get('voted_jokes') ? Cookies.get('voted_jokes').split(',') : [];
-                
-            votedJokes.push(jokeId.toString());
-                Cookies.set('voted_jokes', votedJokes.join(','), { expires: 7 }); 
-                const response = await axios.post(`${BASE_URL}vote/add`, { 
-                    jokeId: jokeId, 
-                    liked: vote, 
-                });
-                console.log('Vote success:', response.data);
-                fetchData();
+            const response = await axios.post(`${BASE_URL}vote/add`, { 
+                jokeId: jokeId, 
+                liked: vote, 
+            });
+            console.log('Vote success:', response.data);
+            fetchData();
         } catch (error) {
             console.error('Error voting:', error);
             alert("Vote Error");

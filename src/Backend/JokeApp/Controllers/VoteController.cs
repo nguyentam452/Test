@@ -31,14 +31,17 @@ namespace JokeApp.Controllers
             _context.Vote.Add(newVote);
             _context.SaveChanges(); // Lưu thay đổi vào cơ sở dữ liệu
 
-            //var votedJokes = Request.Cookies[JokesCookie.JokesCookieName]?.Split(',') ?? new string[0];
+            var votedJokes = Request.Cookies[JokesCookie.JokesCookieName]?.Split(',') ?? new string[0];
 
-            //votedJokes = votedJokes.Concat(new[] { vote.JokeId }).ToArray();
+            votedJokes = votedJokes.Concat(new[] { vote.JokeId }).ToArray();
 
-            //Response.Cookies.Append(JokesCookie.JokesCookieName, string.Join(',', votedJokes), new CookieOptions
-            //{
-            //    Expires = DateTime.Now.AddDays(1)
-            //});
+            Response.Cookies.Append(JokesCookie.JokesCookieName, string.Join(',', votedJokes), new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(1),
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None
+            });
 
             return Ok(new BaseResponseModel<string>(statusCode: StatusCodes.Status201Created, code: ResponseCodeConstants.SUCCESS, data: ReponseMessageConstantsVote.VOTE_SUCCESS));
         }
