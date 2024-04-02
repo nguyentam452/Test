@@ -1,0 +1,7 @@
+D:\Test PV Zens\algorithm\src\algorithm\bin\Debug\algorithm.exe.config
+D:\Test PV Zens\algorithm\src\algorithm\bin\Debug\algorithm.exe
+D:\Test PV Zens\algorithm\src\algorithm\bin\Debug\algorithm.pdb
+D:\Test PV Zens\algorithm\src\algorithm\obj\Debug\algorithm.csproj.AssemblyReference.cache
+D:\Test PV Zens\algorithm\src\algorithm\obj\Debug\algorithm.csproj.CoreCompileInputs.cache
+D:\Test PV Zens\algorithm\src\algorithm\obj\Debug\algorithm.exe
+D:\Test PV Zens\algorithm\src\algorithm\obj\Debug\algorithm.pdb
