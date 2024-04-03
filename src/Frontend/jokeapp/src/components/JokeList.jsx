@@ -64,7 +64,7 @@ const JokeList = () => {
                 </div>
             ) : (
                 <>
-                    <ul className="" style={{padding:'0px 11%'}}>
+                    <ul className="" style={{padding:'0px 10%'}}>
                             <li key={jokes.id} className="list-group-item" dangerouslySetInnerHTML={{ __html: jokes.content }}></li>
                     </ul>
                     {showButtons && ( 

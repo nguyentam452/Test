@@ -72,6 +72,19 @@ nav {
 .button-container {
   display: flex;
   justify-content: center; /* Căn giữa các nút theo chiều ngang */
-  gap: 10px; /* Khoảng cách giữa các nút */
-  padding:10%; 
+  gap: 30px; /* Khoảng cách giữa các nút */
+  padding:5%; 
+  margin-bottom: 40px; 
+
+}
+.button-container button{
+  width:250px ;
+  border-radius:0;
+}
+.footer-custom {
+  borderTop: '1px solid black'; 
+  paddingTop: '20px';
+  marginTop: '20px';
+}
+.footer-custom span{
 }
